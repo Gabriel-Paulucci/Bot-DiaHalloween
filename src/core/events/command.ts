@@ -9,19 +9,12 @@ export async function executeCommand (message: Message, commands: ICommands, cli
 
     const player = await createPlayer(message.guild.id, message.author.id)
 
+    if (!message.content.startsWith(player.guild.prefix)) {
+        return
+    }
+
     // Separando os argumentos
-    const args = message.content.slice(1).trim().split(/ +/)
-
-    // Pegando o prefix e verificando se ele existe 
-    const prefix = args.shift()?.toLowerCase() as string
-
-    if (!prefix) {
-        return
-    }
-
-    if (prefix != player.guild.prefix) {
-        return
-    }
+    const args = message.content.slice(player.guild.prefix.length).trim().split(/ +/)
 
     // Pegando o commandName e verifiando se ele existe
     const commandName = args.shift()?.toLowerCase() as string
@@ -39,6 +32,10 @@ export async function executeCommand (message: Message, commands: ICommands, cli
     // Executando comando
     command.execCommand({
         message: message,
-        client: client
+        client: client,
+        args: args,
+        params: {
+            ['player']: player
+        }
     })
 }

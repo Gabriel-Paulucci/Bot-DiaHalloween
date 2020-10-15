@@ -49,8 +49,8 @@ class BotDiaHalloween {
             console.log('Bot iniciado')
         })
 
-        this.client.on('message', message => {
-            executeCommand(message, this._commands, this.client)
+        this.client.on('message', async message => {
+            await executeCommand(message, this._commands, this.client)
         })
 
         this.client.login(this._token)
@@ -58,5 +58,6 @@ class BotDiaHalloween {
 }
 
 const botDiaHalloween = new BotDiaHalloween()
+botDiaHalloween.registerCommands()
 
 export default botDiaHalloween

@@ -16,8 +16,14 @@ export async function createPlayer(guildId: string, userId: string): Promise<Pla
             user: {
                 discordId: userId
             }
-        }
+        },
+        relations: [
+            'guild',
+            'user'
+        ]
     })
+
+    console.log(exist)
 
     if (!exist) {
         const guild = await createGuild(guildId)
