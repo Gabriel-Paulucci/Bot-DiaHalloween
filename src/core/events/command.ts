@@ -1,12 +1,13 @@
 import { Client, Message } from "discord.js"
-import { getRepository } from "typeorm"
-import { Guild } from "../../database/models/guild"
+import { createPlayer } from "../../database/functions/playerFuncs"
 import { ICommands } from "../models/commands"
 
 export async function executeCommand (message: Message, commands: ICommands, client: Client): Promise<void> {
     if (!message.guild || message.author.bot) {
         return
     }
+
+    const player = await createPlayer(message.guild.id, message.author.id)
 
     // Separando os argumentos
     const args = message.content.slice(1).trim().split(/ +/)
@@ -18,15 +19,7 @@ export async function executeCommand (message: Message, commands: ICommands, cli
         return
     }
 
-    const rep = getRepository(Guild)
-
-    const guild = await rep.findOne({
-        where: {
-            discordId: message.guild?.id
-        }
-    })
-
-    if (prefix != guild?.prefix) {
+    if (prefix != player.guild.prefix) {
         return
     }
 

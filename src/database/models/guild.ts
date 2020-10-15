@@ -11,10 +11,10 @@ export class Guild {
     id!: number
 
     @Column({
-        type: 'integer',
+        type: 'text',
         unsigned: true
     })
-    discordId!: number
+    discordId!: string
 
     @Column({
         type: 'text',

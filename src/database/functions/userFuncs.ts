@@ -1,7 +1,7 @@
 import { getRepository } from "typeorm";
 import { User } from "../models/user";
 
-export async function create({ discordId }: User): Promise<User> {
+export async function createUser(discordId: string): Promise<User> {
     const rep = getRepository(User)
 
     const exist = await rep.findOne({

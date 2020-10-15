@@ -1,7 +1,7 @@
 import { getRepository } from "typeorm";
 import { Guild } from "../models/guild";
 
-export async function create({ discordId }: Guild): Promise<Guild> {
+export async function createGuild(discordId: string): Promise<Guild> {
     const rep = getRepository(Guild)
 
     const exist = await rep.findOne({

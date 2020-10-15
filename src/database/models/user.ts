@@ -10,10 +10,10 @@ export class User {
     id!: number
 
     @Column({
-        type: 'integer',
+        type: 'text',
         unsigned: true
     })
-    discordId!: number
+    discordId!: string
     
     @OneToMany(() => Player, x => x.user.id)
     players!: Player[]
