@@ -1,0 +1,19 @@
+{
+  "name": "bot-diahalloween",
+  "version": "1.0.0",
+  "description": "Bot para o evento de halloween do bpd",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gabriel-Paulucci/Bot-DiaHalloween.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gabriel-Paulucci/Bot-DiaHalloween/issues"
+  },
+  "homepage": "https://github.com/Gabriel-Paulucci/Bot-DiaHalloween#readme"
+}
