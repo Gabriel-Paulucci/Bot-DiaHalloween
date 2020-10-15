@@ -1,3 +1,6 @@
+# Configs
+src/configs
+
 # Lock
 package-lock.json
 yarn.lock
