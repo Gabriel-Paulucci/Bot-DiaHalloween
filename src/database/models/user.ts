@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Player } from "./player";
 
 @Entity('users')
 export class User {
@@ -13,4 +14,7 @@ export class User {
         unsigned: true
     })
     discordId!: number
+    
+    @OneToMany(() => Player, x => x.user.id)
+    players!: Player[]
 }
