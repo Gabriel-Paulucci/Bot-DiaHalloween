@@ -1,6 +1,6 @@
 import { Client } from "discord.js";
 import glob from "glob";
-import { executeCommand } from "./events/message";
+import { executeCommand } from "./events/command";
 import { Command, ICommands } from "./models/commands";
 
 class BotDiaHalloween {
