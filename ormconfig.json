@@ -1,9 +1,9 @@
 {
     "type": "sqlite",
-    "database": "/src/database/bot_diahalloween.sqlite",
+    "database": "./src/database/bot_diahalloween.sqlite",
     "synchronize": true,
     "logging": false,
     "entities": [
        "src/database/models/**/*.ts"
     ]
- }
+}
