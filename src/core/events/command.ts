@@ -1,5 +1,5 @@
 import { Client, Message } from "discord.js"
-import { createPlayer } from "../../database/functions/playerFuncs"
+import { getPrefix } from "../../database/functions/getPrefix"
 import { ICommands } from "../models/commands"
 
 export async function executeCommand (message: Message, commands: ICommands, client: Client): Promise<void> {
@@ -7,7 +7,7 @@ export async function executeCommand (message: Message, commands: ICommands, cli
         return
     }
 
-    const player = await createPlayer(message.guild.id, message.author.id)
+    const player = await getPrefix(message.guild.id, message.author.id)
 
     if (!message.content.startsWith(player.guild.prefix)) {
         return

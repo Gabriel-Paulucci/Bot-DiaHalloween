@@ -1,8 +1,8 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Player } from "./player";
 
 @Entity('users')
-export class User {
+export class User extends BaseEntity {
     @PrimaryGeneratedColumn('increment', {
         unsigned: true,
         type: 'integer'
@@ -15,6 +15,6 @@ export class User {
     })
     discordId!: string
     
-    @OneToMany(() => Player, x => x.user.id)
+    @OneToMany(() => Player, x => x.user)
     players!: Player[]
 }

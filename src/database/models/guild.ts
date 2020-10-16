@@ -1,9 +1,9 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Player } from "./player";
 import config from "../../configs/bot.json";
 
 @Entity('guilds')
-export class Guild {
+export class Guild extends BaseEntity {
     @PrimaryGeneratedColumn('increment', {
         unsigned: true,
         type: 'integer'
@@ -22,6 +22,6 @@ export class Guild {
     })
     prefix!: string
 
-    @OneToMany(() => Player, x => x.guild.id)
+    @OneToMany(() => Player, x => x.guild)
     players!: Player[]
 }
