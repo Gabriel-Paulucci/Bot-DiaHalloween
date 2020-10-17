@@ -39,15 +39,24 @@ class Profile extends Command {
 
         const embed = new MessageEmbed()
         embed.setTitle('Perfil de ' + member?.displayName)
-        embed.setThumbnail(member?.user.avatarURL() as string)
+        embed.setThumbnail(member?.user.avatarURL({dynamic: true}) as string)
         embed.setColor(colors.laranja)
+        embed.setDescription('Jogo Doçuras ou Travessuras')
 
-        let doces = 
+        embed.addField('\u200b', '\u200b')
+
+        let docuras = 
             emojis.lollipop + ' ' + player.treat.lollipops + '\n' +
             emojis.candy + ' ' + player.treat.candys + '\n' +
             emojis.chocolateBar + ' ' + player.treat.chocolateBars
 
-        embed.addField('Doces', doces)
+        embed.addField('Doçuras', docuras, true)
+
+        let travessuras =
+            emojis.egg + ' ' + player.trick.egges + '\n' + 
+            emojis.rollOfPaper + ' ' + player.trick.rollsOfPaper
+
+        embed.addField('Travessuras', travessuras, true)
 
         context.message.channel.send(embed)
     }
