@@ -1,5 +1,5 @@
 import { MessageEmbed } from "discord.js";
-import { getPlayerinfo } from "../../database/functions/getPlayerInfo";
+import { getPlayerinfo } from "../../database/functions/getPlayer";
 import { Player } from "../../database/models/player";
 import { Command } from "../models/commands";
 import { IContext } from "../models/contexts";
@@ -53,7 +53,7 @@ class Profile extends Command {
         embed.addField('Doçuras', docuras, true)
 
         let travessuras =
-            emojis.egg + ' ' + player.trick.egges + '\n' + 
+            emojis.egg + ' ' + player.trick.eggs + '\n' + 
             emojis.rollOfPaper + ' ' + player.trick.rollsOfPaper
 
         embed.addField('Travessuras', travessuras, true)

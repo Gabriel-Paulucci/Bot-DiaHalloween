@@ -1,6 +1,7 @@
 import { Client } from "discord.js";
 import glob from "glob";
 import { executeCommand } from "./events/command";
+import { genCandy } from "./events/genCandy";
 import { Command, ICommands } from "./models/commands";
 
 class BotDiaHalloween {
@@ -51,6 +52,10 @@ class BotDiaHalloween {
 
         this.client.on('message', async message => {
             await executeCommand(message, this._commands, this.client)
+        })
+
+        this.client.on('message', message => {
+            genCandy(message)
         })
 
         this.client.login(this._token)

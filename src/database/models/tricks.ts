@@ -13,7 +13,7 @@ export class Trick extends BaseEntity {
         nullable: false,
         default: 0
     })
-    egges!: number
+    eggs!: number
 
     @Column({
         type: 'integer',

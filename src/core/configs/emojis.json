@@ -3,5 +3,22 @@
     "candy": "🍬",
     "chocolateBar": "🍫",
     "egg": "🥚",
-    "rollOfPaper": "🧻"
+    "rollOfPaper": "🧻",
+    "bat": "🦇",
+    "spiderWeb": "🕸️",
+    "bone": "🦴",
+    "emojiReact": [
+        "🦇",
+        "🕸️",
+        "🦴"
+    ],
+    "tricks": [
+        "🥚",
+        "🧻"
+    ],
+    "treats": [
+        "🍭",
+        "🍬",
+        "🍫"
+    ]
 }
