@@ -59,3 +59,13 @@ export async function getPrefix(guildId: string, userId: string): Promise<Player
 
     return player
 }
+
+export async function getPrefixByGuild(discordId: string): Promise<Guild> {
+    const guild = await Guild.findOne({
+        where: {
+            discordId: discordId
+        }
+    })
+
+    return guild as Guild
+}

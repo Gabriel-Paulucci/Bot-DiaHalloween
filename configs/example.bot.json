@@ -1,4 +1,4 @@
 {
     "token": "token do bot",
-    "pefix": "prefixo dos comandos do bot"
+    "prefix": "prefixo dos comandos do bot"
 }
