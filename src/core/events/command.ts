@@ -33,9 +33,6 @@ export async function executeCommand (message: Message, commands: ICommands, cli
     command.execCommand({
         message: message,
         client: client,
-        args: args,
-        params: {
-            ['player']: player
-        }
+        args: args
     })
 }

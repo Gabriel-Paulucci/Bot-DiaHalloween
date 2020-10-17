@@ -5,9 +5,6 @@ import { Trick } from "../models/tricks";
 import { User } from "../models/user";
 
 export async function getPrefix(guildId: string, userId: string): Promise<Player> {
-    console.log(guildId)
-    console.log(userId)
-
     let user = await User.findOne({
         where: {
             discordId: userId
@@ -57,10 +54,8 @@ export async function getPrefix(guildId: string, userId: string): Promise<Player
             treat: treat
         })
 
-        Player.save(player)
+        await Player.save(player)
     }
-
-    console.log(player)
 
     return player
 }
