@@ -30,13 +30,9 @@ class TrickOrTreat extends Command {
 
     async execCommand(context: IContext): Promise<void> {
         const player = await getPlayerinfo(context.message.author.id)
-        const momentNow = moment(new Date())
-        const momentStart = moment(player.trickOrTreatTime)
-        const momentDate = momentNow.subtract(momentStart.get('milliseconds'), 'milliseconds')
-        const dateNow = new Date().valueOf()
-        const dateStart = new Date(player.trickOrTreatTime).valueOf()
-        const date = dateNow -  dateStart
-        if (date >= 0) {
+        const dateNow = moment.now().valueOf()
+        const dateStart = player.trickOrTreatTime
+        if (dateNow > dateStart) {
             await resetPlayerTime(player)
 
             const emoji = emojis.emojiReact[Math.round(Math.random() * (emojis.emojiReact.length - 1))]
@@ -112,7 +108,7 @@ class TrickOrTreat extends Command {
             })
         }
         else {
-            const duration = moment(date).format('mm[m]')
+            const duration = moment(dateStart - dateNow).format('mm[m]')
             context.message.channel.send('Espere ' + duration + ' para usar esse comando')
         }
     }
