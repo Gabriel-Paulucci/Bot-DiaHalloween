@@ -36,27 +36,28 @@ export class Player extends BaseEntity {
     })
     treatId!: number
 
-    @ManyToOne(() => Guild, x => x.players)
-    @JoinColumn({
-        name: 'guildId'
+    @Column({
+        type: 'integer',
+        nullable: false,
+        default: true
     })
+    trickOrTreat!: boolean
+
+    @Column({
+        type: 'text',
+        nullable: true
+    })
+    trickOrTreatTime!: Date
+
+    @ManyToOne(() => Guild, x => x.players)
     guild!: Guild
 
     @ManyToOne(() => User, x => x.players)
-    @JoinColumn({
-        name: 'userId'
-    })
     user!: User
 
     @ManyToOne(() => Trick, x => x.players)
-    @JoinColumn({
-        name: 'trickId'
-    })
     trick!: Trick
 
     @ManyToOne(() => Treat, x => x.players)
-    @JoinColumn({
-        name: 'treatId'
-    })
     treat!: Treat
 }

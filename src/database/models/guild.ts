@@ -1,8 +1,11 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Player } from "./player";
 import config from "../../configs/bot.json";
 
 @Entity('guilds')
+@Index(['discordId'], {
+    unique: true 
+})
 export class Guild extends BaseEntity {
     @PrimaryGeneratedColumn('increment', {
         unsigned: true,

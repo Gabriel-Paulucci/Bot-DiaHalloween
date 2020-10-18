@@ -1,7 +1,10 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Player } from "./player";
 
 @Entity('users')
+@Index(['discordId'], {
+    unique: true 
+})
 export class User extends BaseEntity {
     @PrimaryGeneratedColumn('increment', {
         unsigned: true,
