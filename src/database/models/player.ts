@@ -37,13 +37,6 @@ export class Player extends BaseEntity {
     treatId!: number
 
     @Column({
-        type: 'integer',
-        nullable: false,
-        default: true
-    })
-    trickOrTreat!: boolean
-
-    @Column({
         type: 'text',
         nullable: false,
         default: new Date(0).toISOString()
