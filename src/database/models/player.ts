@@ -48,7 +48,7 @@ export class Player extends BaseEntity {
         nullable: false,
         default: new Date(0).toISOString()
     })
-    trickOrTreatTime!: number
+    trickOrTreatTime!: string
 
     @ManyToOne(() => Guild, x => x.players)
     guild!: Guild

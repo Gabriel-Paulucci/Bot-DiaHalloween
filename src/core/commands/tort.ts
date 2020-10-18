@@ -30,8 +30,8 @@ class TrickOrTreat extends Command {
 
     async execCommand(context: IContext): Promise<void> {
         const player = await getPlayerinfo(context.message.author.id)
-        const dateNow = moment.now().valueOf()
-        const dateStart = player.trickOrTreatTime
+        const dateNow = moment().valueOf()
+        const dateStart = moment(player.trickOrTreatTime).valueOf()
         if (dateNow > dateStart) {
             await resetPlayerTime(player)
 
@@ -41,7 +41,7 @@ class TrickOrTreat extends Command {
             const members: GuildMember[] = [] 
 
             const collector = context.message.createReactionCollector((reaction: MessageReaction, user: User) => {
-                if (user.id == player.user.discordId) {
+                if (user.id == player.user.discordId || user.id == context.client.user?.id) {
                     return false
                 }
                 for (let i = 0; i < members.length; i++) {

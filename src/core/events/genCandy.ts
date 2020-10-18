@@ -4,7 +4,7 @@ import * as setPlayer from "../../database/functions/setPlayer";
 import emojis from '../configs/emojis.json';
 
 export async function genCandy(message: Message) {
-    if ((!message.guild || message.author.bot) && message.content.length < 10) return
+    if (!message.guild || message.author.bot || message.content.length < 10) return
 
     const numb = Math.round(Math.random() * (100 - 1) + 1)
 

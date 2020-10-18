@@ -1,8 +1,7 @@
 import moment from 'moment'
 
-export function defaultTime(): number {
+export function defaultTime(): string {
     const date = moment()
     date.add(30, 'm')
-    const msdate = date.valueOf()
-    return msdate
+    return date.toISOString()
 }
