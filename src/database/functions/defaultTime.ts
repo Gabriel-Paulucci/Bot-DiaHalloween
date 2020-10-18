@@ -1,5 +1,8 @@
-export function defaultTime(): Date {
-    const date = new Date()
-    date.setMinutes(date.getMinutes() + 30)
-    return date
+import moment from 'moment'
+
+export function defaultTime(): number {
+    const date = moment()
+    date.add(30, 'm')
+    const msdate = date.valueOf()
+    return msdate
 }
