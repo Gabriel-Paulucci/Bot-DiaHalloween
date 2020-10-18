@@ -37,14 +37,13 @@ class Help extends Command {
 
                 if (command.alias.length > 0) {
                     let alias = ''
-                    console.log(command.alias)
                     for (let i = 0; i < command.alias.length; i++) {
                         alias = alias.concat(command.alias[i] + '\n')
                     }
                     embed.addField('Alias', alias)
                 }
 
-                if (command.info.usage) {
+                if (command.info.usage.length > 0) {
                     let usage = ''
                     for (let i = 0; i < command.info.usage.length; i++) {
                         usage = usage.concat(command.info.usage[i] + '\n')
@@ -64,8 +63,8 @@ class Help extends Command {
             embed.setColor(colors.laranja)
             const modules: IHelpModule = {}
 
-            for (const key in context.commands) {
-                const command = context.commands[key];
+            for (const key in context.commandsUnique) {
+                const command = context.commandsUnique[key];
                 if (!modules[command.info.module]) modules[command.info.module] = ''
                 modules[command.info.module] = modules[command.info.module].concat('`' + command.name + '` ')
             }

@@ -34,6 +34,7 @@ export async function executeCommand (message: Message, commands: ICommands, cli
         message: message,
         client: client,
         args: args,
-        commands: commandsUnique
+        commandsUnique: commandsUnique,
+        commands: commands
     })
 }

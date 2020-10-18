@@ -5,5 +5,6 @@ export interface IContext {
     message: Message
     client: Client
     args: string[]
+    commandsUnique: ICommands
     commands: ICommands
 }
