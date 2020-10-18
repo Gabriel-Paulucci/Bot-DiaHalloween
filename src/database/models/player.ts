@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { defaultTime } from "../functions/defaultTime";
 import { Guild } from "./guild";
 import { Treat } from "./treats";
 import { Trick } from "./tricks";
@@ -45,9 +46,10 @@ export class Player extends BaseEntity {
 
     @Column({
         type: 'text',
-        nullable: true
+        nullable: false,
+        default: new Date(0).toISOString()
     })
-    trickOrTreatTime!: Date
+    trickOrTreatTime!: string
 
     @ManyToOne(() => Guild, x => x.players)
     guild!: Guild
