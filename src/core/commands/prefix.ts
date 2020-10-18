@@ -10,7 +10,9 @@ class Prefix extends Command {
     constructor() {
         super();
         this.name = 'prefix'
-        this.alias = [],
+        this.alias = [
+            'prefixo'
+        ],
         this.info = {
             module: 'Config',
             description: 'Pega o prefixo ou define um prefixo',

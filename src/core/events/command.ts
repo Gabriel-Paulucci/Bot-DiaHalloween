@@ -2,7 +2,7 @@ import { Client, Message } from "discord.js"
 import { getPrefix } from "../../database/functions/getPrefix"
 import { ICommands } from "../models/commands"
 
-export async function executeCommand (message: Message, commands: ICommands, client: Client): Promise<void> {
+export async function executeCommand (message: Message, commands: ICommands, client: Client, commandsUnique: ICommands): Promise<void> {
     if (!message.guild || message.author.bot) {
         return
     }
@@ -33,6 +33,7 @@ export async function executeCommand (message: Message, commands: ICommands, cli
     command.execCommand({
         message: message,
         client: client,
-        args: args
+        args: args,
+        commands: commandsUnique
     })
 }

@@ -8,11 +8,13 @@ class BotDiaHalloween {
     client: Client
     private _token: string
     private _commands: ICommands
+    private _commandsUnique: ICommands
 
     constructor() {
         this.client = new Client()
         this._token = ''
         this._commands = {}
+        this._commandsUnique = {}
     }
 
     set token(value: string) {
@@ -35,6 +37,7 @@ class BotDiaHalloween {
 
                 if (command instanceof Command) {
                     this._commands[command.name] = command
+                    this._commandsUnique[command.name] = command
                     for (const alia of command.alias) {
                         this._commands[alia] = command
                     }
@@ -51,7 +54,7 @@ class BotDiaHalloween {
         })
 
         this.client.on('message', async message => {
-            await executeCommand(message, this._commands, this.client)
+            await executeCommand(message, this._commands, this.client, this._commandsUnique)
         })
 
         this.client.on('message', message => {
