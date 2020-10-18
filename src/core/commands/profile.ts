@@ -45,6 +45,17 @@ class Profile extends Command {
 
         embed.addField('\u200b', '\u200b')
 
+        let pontos = ((
+            player.treat.lollipops +
+            player.treat.candys +
+            player.treat.chocolateBars
+        ) - (
+            player.trick.eggs + 
+            player.trick.rollsOfPaper
+        )) * 18
+
+        embed.addField('Pontos', pontos)
+
         let docuras = 
             emojis.lollipop + ' ' + player.treat.lollipops + '\n' +
             emojis.candy + ' ' + player.treat.candys + '\n' +
