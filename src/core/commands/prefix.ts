@@ -26,6 +26,11 @@ class Prefix extends Command {
         if (!context.message.guild) return
 
         if (context.args[0]) {
+            if (!context.message.member?.hasPermission('MANAGE_GUILD')) {
+                context.message.channel.send('Você deve ter permissão gerenciar servidor')
+                return
+            }
+
             if (context.args[0].length > 13) {
                 context.message.channel.send('O prefixo deve conter no maximo 13 caracteres')
                 return
@@ -39,7 +44,6 @@ class Prefix extends Command {
             context.message.channel.send('Meu prefixo é ' + guild.prefix)
         }
     }
-
 }
 
 const prefix = new Prefix()
