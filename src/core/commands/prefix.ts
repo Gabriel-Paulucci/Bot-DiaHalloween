@@ -1,7 +1,9 @@
+import { MessageEmbed } from "discord.js";
 import { getPrefixByGuild } from "../../database/functions/getPrefix";
 import { setPrefix } from "../../database/functions/setPrefix";
 import { Command } from "../models/commands";
 import { IContext } from "../models/contexts";
+import colors from "../configs/colors.json";
 
 class Prefix extends Command {
     name: string;
@@ -25,23 +27,30 @@ class Prefix extends Command {
     async execCommand(context: IContext): Promise<void> {
         if (!context.message.guild) return
 
+        const embed = new MessageEmbed()
+        embed.setColor(colors.laranja)
+
         if (context.args[0]) {
             if (!context.message.member?.hasPermission('MANAGE_GUILD')) {
-                context.message.channel.send('Você deve ter permissão gerenciar servidor')
+                embed.setTitle('Você deve ter permissão gerenciar servidor')
+                context.message.channel.send(embed)
                 return
             }
 
             if (context.args[0].length > 13) {
-                context.message.channel.send('O prefixo deve conter no maximo 13 caracteres')
+                embed.setTitle('O prefixo deve conter no maximo 13 caracteres')
+                context.message.channel.send(embed)
                 return
             }
 
             const guild = await setPrefix(context.message.guild.id, context.args[0])
-            context.message.channel.send('Meu novo prefixo é ' + guild.prefix)
+            embed.setTitle('Meu novo prefixo é ' + guild.prefix)
+            context.message.channel.send(embed)
         }
         else {
             const guild = await getPrefixByGuild(context.message.guild.id)
-            context.message.channel.send('Meu prefixo é ' + guild.prefix)
+            embed.setTitle('Meu prefixo é ' + guild.prefix)
+            context.message.channel.send(embed)
         }
     }
 }
