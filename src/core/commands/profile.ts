@@ -27,14 +27,22 @@ class Profile extends Command {
 
     async execCommand(context: IContext): Promise<void> {
         let player: Player
-        let member = context.message.guild?.members.cache.get(context.args[0])
+        let member = context.message.mentions.members?.first()
 
         if (member) {
-            player = await getPlayerinfo(member.id)
+            player = await getPlayerinfo(member.id, context.message.guild?.id as string)
         }
         else {
             member = context.message.guild?.members.cache.get(context.message.author.id)
-            player = await getPlayerinfo(context.message.author.id)
+            player = await getPlayerinfo(context.message.author.id, context.message.guild?.id as string)
+        }
+
+        if (!player) {
+            const embed = new MessageEmbed()
+            embed.setColor(colors.laranja)
+            embed.setTitle(member?.displayName + ' não esta participando do jogo')
+            context.message.channel.send(embed)
+            return
         }
 
         const embed = new MessageEmbed()
