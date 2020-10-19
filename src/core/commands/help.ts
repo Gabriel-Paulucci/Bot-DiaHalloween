@@ -54,7 +54,10 @@ class Help extends Command {
                 context.message.channel.send(embed)
             }
             else {
-                context.message.channel.send('Comando não encontrado')
+                const embed = new MessageEmbed()
+                embed.setColor(colors.laranja)
+                embed.setTitle('Comando não encontrado')
+                context.message.channel.send(embed)
             }
         }
         else {
