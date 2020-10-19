@@ -29,7 +29,7 @@ export async function genCandy(message: Message) {
             embed.setColor(colors.laranja)
             
             const isTrick = Math.round(Math.random())
-            const player = await getPlayerinfo(member.id)
+            const player = await getPlayerinfo(member.id, message.guild?.id as string)
 
             if (isTrick) {
                 const trick = emojis.tricks[Math.round(Math.random() * (emojis.tricks.length - 1))]

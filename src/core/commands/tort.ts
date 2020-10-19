@@ -30,7 +30,7 @@ class TrickOrTreat extends Command {
     }
 
     async execCommand(context: IContext): Promise<void> {
-        const player = await getPlayerinfo(context.message.author.id)
+        const player = await getPlayerinfo(context.message.author.id, context.message.guild?.id as string)
         const dateNow = moment().valueOf()
         const dateStart = moment(player.trickOrTreatTime).valueOf()
 
