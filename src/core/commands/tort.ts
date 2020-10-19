@@ -3,9 +3,10 @@ import { getPlayerinfo } from "../../database/functions/getPlayer";
 import { Command } from "../models/commands";
 import { IContext } from "../models/contexts";
 import emojis from "../configs/emojis.json";
-import { GuildMember, MessageReaction, User } from "discord.js";
+import { GuildMember, MessageEmbed, MessageReaction, User } from "discord.js";
 import * as setPlayer from "../../database/functions/setPlayer";
 import { resetPlayerTime } from "../../database/functions/resetPlayerTime";
+import colors from "../configs/colors.json";
 
 class TrickOrTreat extends Command {
     name: string;
@@ -32,6 +33,10 @@ class TrickOrTreat extends Command {
         const player = await getPlayerinfo(context.message.author.id)
         const dateNow = moment().valueOf()
         const dateStart = moment(player.trickOrTreatTime).valueOf()
+
+        const embed = new MessageEmbed()
+        embed.setColor(colors.laranja)
+
         if (dateNow > dateStart) {
             await resetPlayerTime(player)
 
@@ -80,8 +85,9 @@ class TrickOrTreat extends Command {
                         default:
                             break;
                     }
-    
-                    reaction.message.channel.send('Hahahah travessura para você ' + member.displayName + ' ' + trick)
+                    embed.setTitle('Hahahah travessura para você ' + member.displayName + ' ' + trick)
+                    reaction.message.channel.send(embed)
+                    return
                 }
                 else {
                     const treat = emojis.treats[Math.round(Math.random() * (emojis.treats.length - 1))]
@@ -102,14 +108,16 @@ class TrickOrTreat extends Command {
                         default:
                             break;
                     }
-                    
-                    reaction.message.channel.send('Uma doçura para você ' + member.displayName + ' ' + treat)
+                    embed.setTitle('Uma doçura para você ' + member.displayName + ' ' + treat)
+                    reaction.message.channel.send(embed)
+                    return
                 }
             })
         }
         else {
             const duration = moment(dateStart - dateNow).format('mm[m]')
-            context.message.channel.send('Espere ' + duration + ' para usar esse comando')
+            embed.setTitle('Espere ' + duration + ' para usar esse comando')
+            context.message.channel.send(embed)
         }
     }
 }
